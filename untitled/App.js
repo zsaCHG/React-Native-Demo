@@ -12,10 +12,13 @@ import {
     View,
     Image
 } from 'react-native';
+import {Provider} from 'react-redux';
+import { createStore } from 'redux'
 
 import TextProps from './js/prop'
 import CoverPage from './js/CoverPage'
 import MainPage from './js/main'
+import AppReducer from './js/AllReducer'
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -25,11 +28,12 @@ const instructions = Platform.select({
 });
 
 type Props = {};
+let store=createStore(AppReducer);
 export default class App extends Component<Props> {
     render() {
         let url = {uri: "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"};
         return (
-            <MainPage/>
+            <Provider store={store}><MainPage/></Provider>
         )
     }
 }

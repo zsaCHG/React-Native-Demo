@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, TextInput, ScrollView, FlatList, SectionList, TouchableHighlight} from 'react-native';
+import {connect} from 'react-redux';
 
-export default class TextProps extends Component {
+
+class TextProps extends Component {
 
     constructor(props) {
         super(props);
@@ -18,9 +20,10 @@ export default class TextProps extends Component {
     render() {
         let isShow = this.state.isShow ? this.props.text : "";
         const {navigate} = this.props.navigation;
+        const {sendAction,redux} = this.props;
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}>
-                <Text style={[sytleText.textSize, sytleText.textStyle]}>{isShow}</Text>
+                <Text style={[sytleText.textSize, sytleText.textStyle]}>{redux}</Text>
                 <Text style={sytleText.textSize}>{this.state.test}</Text>
                 <View style={sytleText.textSize}>
                     <TextInput
@@ -47,6 +50,8 @@ export default class TextProps extends Component {
                           renderItem={({item}) => <Text>{item.title}</Text>}/>
                 <TouchableHighlight style={sytleText.textSize}
                                     onPress={()=>{navigate("CoverPage", {})}}><Text>点击跳转</Text></TouchableHighlight>
+                <TouchableHighlight style={sytleText.textSize}
+                                    onPress={()=>{sendAction}}><Text>点击使用Redux</Text></TouchableHighlight>
             </View>
         );
     }
@@ -90,3 +95,21 @@ const sytleText = StyleSheet.create({
     textSize: {flex: 1}
 
 });
+
+const mapStateToProps=(state)=>{
+    return {
+        redux:state.test
+    }
+
+}
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        sendAction:()=>dispatch({
+            type:0
+        })
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TextProps);
+
