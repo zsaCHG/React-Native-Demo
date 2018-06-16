@@ -1,8 +1,9 @@
 var TestKey=1;
 
-function TextReducerFirst(state,action) {
+function TextReducerFirst(state={},action) {
+
     let textLet=action.test;
-    switch (action.key){
+    switch (action.type){
         case TestKey:
             return{
                 ...state,
@@ -12,5 +13,10 @@ function TextReducerFirst(state,action) {
             return state;
     }
 }
+
+export const firstReducer=()=>({
+    type:0,
+    test:"测试测试"
+});
 
 export default TextReducerFirst;

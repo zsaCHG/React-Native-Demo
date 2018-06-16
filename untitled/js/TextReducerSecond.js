@@ -2,9 +2,9 @@ import TextReducerFirst from "./TextReducerFirst";
 
 var TextKey=0;
 
-function TextReducerSecond(state,action) {
+function TextReducerSecond(state={},action) {
     let testVar=action.test;
-    switch(action.key){
+    switch(action.type){
         case TextKey:
             return{
                 ...state,

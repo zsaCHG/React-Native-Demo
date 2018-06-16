@@ -1,7 +1,7 @@
 import React, {Component} from 'React'
 import {View,Image,StyleSheet,TouchableOpacity} from 'react-native'
 
-import TagsView from './TagsView'
+import CoverPageTagsView from './CoverPageTagsView'
 
 export default class CoverPage extends Component{
 
@@ -22,7 +22,7 @@ export default class CoverPage extends Component{
                     </TouchableOpacity>
                 </View>
                 <View style={styleCoverPage.contentView}>
-                    {/*<TagsView tagsData={[]} />*/}
+                    <CoverPageTagsView tagsData={[]} />
                 </View>
             </View>
         );

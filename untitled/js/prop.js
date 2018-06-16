@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, TextInput, ScrollView, FlatList, SectionList, TouchableHighlight} from 'react-native';
 import {connect} from 'react-redux';
+import {firstReducer} from'./TextReducerFirst'
 
 
 class TextProps extends Component {
@@ -20,10 +21,10 @@ class TextProps extends Component {
     render() {
         let isShow = this.state.isShow ? this.props.text : "";
         const {navigate} = this.props.navigation;
-        const {sendAction,redux} = this.props;
+        const {sendAction,redux1} = this.props;
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}>
-                <Text style={[sytleText.textSize, sytleText.textStyle]}>{redux}</Text>
+                <Text style={[sytleText.textSize, sytleText.textStyle]}>{redux1}</Text>
                 <Text style={sytleText.textSize}>{this.state.test}</Text>
                 <View style={sytleText.textSize}>
                     <TextInput
@@ -51,7 +52,7 @@ class TextProps extends Component {
                 <TouchableHighlight style={sytleText.textSize}
                                     onPress={()=>{navigate("CoverPage", {})}}><Text>点击跳转</Text></TouchableHighlight>
                 <TouchableHighlight style={sytleText.textSize}
-                                    onPress={()=>{sendAction}}><Text>点击使用Redux</Text></TouchableHighlight>
+                                    onPress={()=>{this.props.firstReducer()}}><Text>点击使用Redux</Text></TouchableHighlight>
             </View>
         );
     }
@@ -87,7 +88,7 @@ const sytleText = StyleSheet.create({
     textStyle: {
         color: 'blue',
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 10,
         width: 50,
         height: 50,
         alignContent: 'center'
@@ -97,18 +98,15 @@ const sytleText = StyleSheet.create({
 });
 
 const mapStateToProps=(state)=>{
+    console.log(state.test);
     return {
-        redux:state.test
+        redux1:state.TextReducerSecond.test
     }
 
 }
 
-const mapDispatchToProps=(dispatch)=>{
-    return{
-        sendAction:()=>dispatch({
-            type:0
-        })
-    }
+const mapDispatchToProps={
+    firstReducer
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(TextProps);

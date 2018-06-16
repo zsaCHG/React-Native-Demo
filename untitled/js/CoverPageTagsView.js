@@ -1,7 +1,7 @@
 import React, {Component} from 'React'
 import {View, Image, StyleSheet, TouchableOpacity} from 'react-native'
 
-export default class TagsView extends Component {
+export default class CoverPageTagsView extends Component {
 
     render() {
         let cells = [];
