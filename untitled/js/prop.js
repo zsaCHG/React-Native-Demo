@@ -50,9 +50,9 @@ class TextProps extends Component {
                 <FlatList data={this.state.section}
                           renderItem={({item}) => <Text>{item.title}</Text>}/>
                 <TouchableHighlight style={sytleText.textSize}
-                                    onPress={()=>{navigate("CoverPage", {})}}><Text>点击跳转</Text></TouchableHighlight>
+                                    onPress={()=>{navigate("LayoutTestPage", {})}}><Text>点击跳转</Text></TouchableHighlight>
                 <TouchableHighlight style={sytleText.textSize}
-                                    onPress={()=>{this.props.firstReducer()}}><Text>点击使用Redux</Text></TouchableHighlight>
+                                    onPress={()=>{sendAction()}}><Text>点击使用Redux</Text></TouchableHighlight>
             </View>
         );
     }
@@ -105,8 +105,14 @@ const mapStateToProps=(state)=>{
 
 }
 
-const mapDispatchToProps={
-    firstReducer
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        sendAction:()=>{
+            console.log("dfdfd");
+            dispatch({
+            type:0,test:""
+        })}
+    }
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(TextProps);

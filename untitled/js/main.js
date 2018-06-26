@@ -4,6 +4,7 @@ import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation';
 
 import TextProps from './prop';
 import CoverPage from './CoverPage'
+import LayoutTestPage from "./LayoutTestPage";
 
 const Navigation = StackNavigator({
     TextProps: {
@@ -20,11 +21,18 @@ const Navigation = StackNavigator({
             headerTitle: "封面",
             gesturesEnabled: true
         }
+    },
+    LayoutTestPage:{
+        screen:LayoutTestPage,
+        navigationOptions:{
+            headerTitle: "测试布局",
+            gesturesEnabled: true
+        }
     }
 }, {
     mode: 'card',
     headerMode: 'float',
-    initialRouteName: 'TextProps',
+    initialRouteName: 'LayoutTestPage',
     initialRouteParams: {
         text: "=.="
     }
